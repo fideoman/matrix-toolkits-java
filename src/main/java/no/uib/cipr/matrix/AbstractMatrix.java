@@ -156,7 +156,7 @@ public abstract class AbstractMatrix implements Matrix {
     public Vector multAdd(double alpha, Vector x, Vector y) {
         checkMultAdd(x, y);
 
-        if (alpha != 0)
+        if (alpha != 0 && !(x instanceof ZeroVector))
             for (MatrixEntry e : this)
                 y.add(e.row(), alpha * e.get() * x.get(e.column()));
 
@@ -190,7 +190,7 @@ public abstract class AbstractMatrix implements Matrix {
     public Vector transMultAdd(double alpha, Vector x, Vector y) {
         checkTransMultAdd(x, y);
 
-        if (alpha != 0)
+        if (alpha != 0 && !(x instanceof ZeroVector))
             for (MatrixEntry e : this)
                 y.add(e.column(), alpha * e.get() * x.get(e.row()));
 
@@ -248,7 +248,7 @@ public abstract class AbstractMatrix implements Matrix {
     public Matrix rank1(double alpha, Vector x, Vector y) {
         checkRank1(x, y);
 
-        if (alpha == 0)
+        if (alpha == 0 || x instanceof ZeroVector || y instanceof ZeroVector)
             return this;
 
         for (VectorEntry ei : x)
@@ -281,7 +281,7 @@ public abstract class AbstractMatrix implements Matrix {
     public Matrix rank2(double alpha, Vector x, Vector y) {
         checkRank2(x, y);
 
-        if (alpha == 0)
+        if (alpha == 0 || x instanceof ZeroVector || y instanceof ZeroVector)
             return this;
 
         for (VectorEntry ei : x)
