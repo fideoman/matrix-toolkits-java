@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.org/andreas-solti/matrix-toolkits-java.svg?branch=master)](https://travis-ci.org/andreas-solti/matrix-toolkits-java)
-[![Coverage Status](https://coveralls.io/repos/github/andreas-solti/matrix-toolkits-java/badge.svg?branch=master)](https://coveralls.io/github/andreas-solti/matrix-toolkits-java?branch=master)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.andreas-solti.matrix-toolkits-java/mtj/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.andreas-solti.matrix-toolkits-java/mtj)
-[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/io.github.andreas-solti.matrix-toolkits-java/mtj/badge.svg)](http://www.javadoc.io/doc/io.github.andreas-solti.matrix-toolkits-java/mtj)
 
 matrix-toolkits-java 
 ====================
@@ -10,7 +6,10 @@ matrix-toolkits-java
 
 See [matrix-toolkits-java](https://github.com/fommil/matrix-toolkits-java) for the original library.
 
-This fork is just a minor extension to cover the case of *general* matrices.
+The purpose of this fork is to experiement with some sparse solver in problems arising from continuous-time Markov chains (CTMC).
+Maven artifact coordinates were changed for easy referencing in other projects.
+
+This fork incorporates extensions by [Andreas Solti](https://github.com/andreas-solti/matrix-toolkits-java), including eigenvalue problems in the case of *general* sparse matrices.
 The symmetric case was already covered in [ArpackSym](src/main/java/no/uib/cipr/matrix/sparse/ArpackSym.java).
 The new class is [ArpackGen](src/main/java/no/uib/cipr/matrix/sparse/ArpackGen.java).
 It uses [ARPACK](http://www.caam.rice.edu/software/ARPACK/)'s [dnaupd](http://www.caam.rice.edu/software/ARPACK/UG/node137.html) and
@@ -32,6 +31,7 @@ Legal
 
 * Copyright (C) 2003-2006 Bjørn-Ove Heimsund
 * Copyright (C) 2006-2014 Samuel Halliday
+* Copyright (C) 2016-2018 Andreas Solti
 
 
 History
@@ -39,7 +39,7 @@ History
 
 This project was originally written by Bjørn-Ove Heimsund, who has taken a step back due to other commitments.
 The original project [matrix-toolkits-java](https://github.com/fommil/matrix-toolkits-java) is maintained by Samuel Halliday.
-
+As Samuel Halliday archived the project, it was forked by Andreas Solti to incorporate the sparse eigenvalue solver ApackGen for general matrices.
 
 Installation
 ============
