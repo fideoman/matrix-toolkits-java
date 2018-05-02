@@ -23,6 +23,7 @@ package no.uib.cipr.matrix.sparse;
 import no.uib.cipr.matrix.DenseVector;
 import no.uib.cipr.matrix.Matrix;
 import no.uib.cipr.matrix.Vector;
+import no.uib.cipr.matrix.ZeroVector;
 
 /**
  * Diagonal preconditioner. Uses the inverse of the diagonal as preconditioner
@@ -46,7 +47,10 @@ public class DiagonalPreconditioner implements Preconditioner {
 
     public Vector apply(Vector b, Vector x) {
         if (!(x instanceof DenseVector) || !(b instanceof DenseVector))
-            throw new IllegalArgumentException("Vector must be DenseVectors");
+            if (b instanceof ZeroVector)
+                b = new DenseVector(new double[b.size()]);
+            else
+                throw new IllegalArgumentException("Vector must be DenseVectors");
 
         double[] xd = ((DenseVector) x).getData();
         double[] bd = ((DenseVector) b).getData();

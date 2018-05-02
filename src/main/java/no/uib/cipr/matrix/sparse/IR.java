@@ -64,6 +64,10 @@ public class IR extends AbstractIterativeSolver {
             M.apply(r, z);
             x.add(z);
             A.multAdd(-1, x, r.set(b));
+
+            N.setX(x);
+            N.apply(x);
+            N.apply(r);
         }
 
         return x;

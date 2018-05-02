@@ -96,6 +96,10 @@ public class BiCG extends AbstractIterativeSolver {
             rtilde.add(-alpha, qtilde);
 
             rho_2 = rho_1;
+
+            N.setX(x);
+            N.apply(x);
+            N.apply(r);
         }
 
         return x;

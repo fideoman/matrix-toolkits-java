@@ -170,6 +170,10 @@ public class GMRES extends AbstractIterativeSolver {
             A.multAdd(-1, x, u.set(b));
             M.apply(u, r);
             normr = r.norm(Norm.Two);
+
+            N.setX(x);
+            N.apply(x);
+            N.apply(r);
         }
 
         return x;

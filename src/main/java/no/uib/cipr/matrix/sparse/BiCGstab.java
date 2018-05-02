@@ -100,6 +100,12 @@ public class BiCGstab extends AbstractIterativeSolver {
             s.set(r).add(-alpha, v);
 
             x.add(alpha, phat);
+
+            N.setX(x);
+            N.apply(x);
+            N.apply(r);
+            N.apply(s);
+
             if (iter.converged(s, x))
                 return x;
 

@@ -34,6 +34,11 @@ public abstract class AbstractIterativeSolver implements IterativeSolver {
     protected Preconditioner M;
 
     /**
+     * Normalizer to use
+     */
+    protected Normalizer N;
+
+    /**
      * Iteration monitor
      */
     protected IterationMonitor iter;
@@ -44,6 +49,7 @@ public abstract class AbstractIterativeSolver implements IterativeSolver {
      */
     public AbstractIterativeSolver() {
         M = new IdentityPreconditioner();
+        N = new NullNormalizer();
         iter = new DefaultIterationMonitor();
     }
 
@@ -53,6 +59,14 @@ public abstract class AbstractIterativeSolver implements IterativeSolver {
 
     public Preconditioner getPreconditioner() {
         return M;
+    }
+
+    public void setNormalizer(Normalizer N) {
+        this.N = N;
+    }
+
+    public Normalizer getNormalizer() {
+        return N;
     }
 
     public IterationMonitor getIterationMonitor() {
@@ -95,4 +109,17 @@ public abstract class AbstractIterativeSolver implements IterativeSolver {
 
     }
 
+    /**
+     * Default normalizer which does nothing
+     */
+    private static class NullNormalizer implements Normalizer {
+
+        @Override
+        public Vector apply(Vector vector) {
+            return vector;
+        }
+
+        @Override
+        public void setX(Vector vector) {}
+    }
 }

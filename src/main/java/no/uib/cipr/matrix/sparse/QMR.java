@@ -207,6 +207,13 @@ public class QMR extends AbstractIterativeSolver {
 
             x.add(d);
             r.add(-1, s);
+
+            N.setX(x);
+            N.apply(x);
+            N.apply(r);
+            N.apply(s);
+            N.apply(v_tld);
+            N.apply(y);
         }
 
         return x;

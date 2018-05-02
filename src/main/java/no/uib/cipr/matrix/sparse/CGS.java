@@ -99,6 +99,10 @@ public class CGS extends AbstractIterativeSolver {
             r.add(-alpha, qhat);
 
             rho_2 = rho_1;
+
+            N.setX(x);
+            N.apply(x);
+            N.apply(r);
         }
 
         return x;
