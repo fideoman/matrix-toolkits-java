@@ -65,6 +65,7 @@ public class CGS extends AbstractIterativeSolver {
     public Vector solve(Matrix A, Vector b, Vector x)
             throws IterativeSolverNotConvergedException {
         checkSizes(A, b, x);
+        startLogger();
 
         double rho_1 = 0, rho_2 = 0, alpha = 0, beta = 0;
 
@@ -103,8 +104,10 @@ public class CGS extends AbstractIterativeSolver {
             N.setX(x);
             N.apply(x);
             N.apply(r);
+            log();
         }
 
+        closeLogger();
         return x;
     }
 

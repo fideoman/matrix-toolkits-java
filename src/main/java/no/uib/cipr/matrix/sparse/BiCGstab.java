@@ -65,6 +65,7 @@ public class BiCGstab extends AbstractIterativeSolver {
     public Vector solve(Matrix A, Vector b, Vector x)
             throws IterativeSolverNotConvergedException {
         checkSizes(A, b, x);
+        startLogger();
 
         double rho_1 = 1, rho_2 = 1, alpha = 1, beta = 1, omega = 1;
 
@@ -105,6 +106,7 @@ public class BiCGstab extends AbstractIterativeSolver {
             N.apply(x);
             N.apply(r);
             N.apply(s);
+            log();
 
             if (iter.converged(s, x))
                 return x;
@@ -118,6 +120,7 @@ public class BiCGstab extends AbstractIterativeSolver {
             rho_2 = rho_1;
         }
 
+        closeLogger();
         return x;
     }
 

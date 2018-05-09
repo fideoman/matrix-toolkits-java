@@ -63,6 +63,7 @@ public class BiCG extends AbstractIterativeSolver {
     public Vector solve(Matrix A, Vector b, Vector x)
             throws IterativeSolverNotConvergedException {
         checkSizes(A, b, x);
+        startLogger();
 
         double rho_1 = 1, rho_2 = 1, alpha = 1, beta = 1;
 
@@ -100,8 +101,10 @@ public class BiCG extends AbstractIterativeSolver {
             N.setX(x);
             N.apply(x);
             N.apply(r);
+            log();
         }
 
+        closeLogger();
         return x;
     }
 

@@ -117,6 +117,7 @@ public class QMR extends AbstractIterativeSolver {
     public Vector solve(Matrix A, Vector b, Vector x)
             throws IterativeSolverNotConvergedException {
         checkSizes(A, b, x);
+        startLogger();
 
         double rho = 0, rho_1 = 0, xi = 0, gamma = 1., gamma_1 = 0, theta = 0, theta_1 = 0, eta = -1., delta = 0, ep = 0, beta = 0;
 
@@ -214,8 +215,10 @@ public class QMR extends AbstractIterativeSolver {
             N.apply(s);
             N.apply(v_tld);
             N.apply(y);
+            log();
         }
 
+        closeLogger();
         return x;
     }
 

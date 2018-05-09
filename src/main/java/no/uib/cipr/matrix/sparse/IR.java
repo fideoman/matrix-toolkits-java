@@ -57,6 +57,7 @@ public class IR extends AbstractIterativeSolver {
     public Vector solve(Matrix A, Vector b, Vector x)
             throws IterativeSolverNotConvergedException {
         checkSizes(A, b, x);
+        startLogger();
 
         A.multAdd(-1, x, r.set(b));
 
@@ -68,8 +69,10 @@ public class IR extends AbstractIterativeSolver {
             N.setX(x);
             N.apply(x);
             N.apply(r);
+            log();
         }
 
+        closeLogger();
         return x;
     }
 

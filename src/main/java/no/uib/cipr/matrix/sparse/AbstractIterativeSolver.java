@@ -22,6 +22,7 @@ package no.uib.cipr.matrix.sparse;
 
 import no.uib.cipr.matrix.Matrix;
 import no.uib.cipr.matrix.Vector;
+import no.uib.cipr.matrix.io.SolverLogger;
 
 /**
  * Partial implementation of an iterative solver
@@ -42,6 +43,11 @@ public abstract class AbstractIterativeSolver implements IterativeSolver {
      * Iteration monitor
      */
     protected IterationMonitor iter;
+
+    /**
+     * Logger to log the algorithm
+     */
+    protected SolverLogger logger;
 
     /**
      * Constructor for AbstractIterativeSolver. Does not use preconditioning,
@@ -77,6 +83,10 @@ public abstract class AbstractIterativeSolver implements IterativeSolver {
         this.iter = iter;
     }
 
+    public void setLogger(String fileName) {
+        this.logger = new SolverLogger(fileName);
+    }
+
     /**
      * Checks sizes of input data for {@link #solve(Matrix, Vector, Vector)}.
      * Throws an exception if the sizes does not match.
@@ -88,6 +98,21 @@ public abstract class AbstractIterativeSolver implements IterativeSolver {
             throw new IllegalArgumentException("b.size() != A.numRows()");
         if (b.size() != x.size())
             throw new IllegalArgumentException("b.size() != x.size()");
+    }
+
+    protected void startLogger() {
+        if (logger != null)
+            logger.start(this);
+    }
+
+    protected void closeLogger() {
+        if (logger != null)
+            logger.close();
+    }
+
+    protected void log() {
+        if (logger != null)
+            logger.log();
     }
 
     /**

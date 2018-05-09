@@ -127,6 +127,7 @@ public class GMRES extends AbstractIterativeSolver {
     public Vector solve(Matrix A, Vector b, Vector x)
             throws IterativeSolverNotConvergedException {
         checkSizes(A, b, x);
+        startLogger();
 
         A.multAdd(-1, x, u.set(b));
         M.apply(u, r);
@@ -160,6 +161,7 @@ public class GMRES extends AbstractIterativeSolver {
                 rotation[i] = new GivensRotation(H.get(i, i), H.get(i + 1, i));
                 rotation[i].apply(H, i, i, i + 1);
                 rotation[i].apply(s, i, i + 1);
+                log();
             }
 
             // Update solution in current subspace
@@ -174,8 +176,10 @@ public class GMRES extends AbstractIterativeSolver {
             N.setX(x);
             N.apply(x);
             N.apply(r);
+            log();
         }
 
+        closeLogger();
         return x;
     }
 
