@@ -2,16 +2,15 @@ package no.uib.cipr.matrix.sparse;
 
 import no.uib.cipr.matrix.DenseVector;
 import no.uib.cipr.matrix.DenseVectorSub;
-import no.uib.cipr.matrix.Vector;
-import org.apache.commons.math3.linear.Array2DRowRealMatrix;
-import org.apache.commons.math3.linear.RealMatrix;
-import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+import org.apache.commons.math4.linear.Array2DRowRealMatrix;
+import org.apache.commons.math4.linear.RealMatrix;
+import org.apache.commons.math4.stat.descriptive.DescriptiveStatistics;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import org.apache.commons.math3.linear.EigenDecomposition;
+import org.apache.commons.math4.linear.EigenDecomposition;
 
 import java.util.Arrays;
 import java.util.Map;
