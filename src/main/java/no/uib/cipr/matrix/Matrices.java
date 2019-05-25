@@ -22,6 +22,8 @@ package no.uib.cipr.matrix;
 
 import java.util.Arrays;
 
+import org.apache.commons.math4.util.FastMath;
+
 /**
  * Static utility methods for matrices and vectors
  */
@@ -108,7 +110,39 @@ public final class Matrices {
             A.set(i, i, 1);
         return A;
     }
-
+    
+    public static DenseMatrix repeatVector(int numberOfTimes, DenseVector biasVector) {
+		DenseMatrix biasMatrix = new DenseMatrix(biasVector.size, numberOfTimes);		
+		// Repeat DenseVector in DenseMatrix
+		for (int i = 0; i < numberOfTimes; i++) {
+			for (int j = 0; j < biasVector.size; j++) {
+				biasMatrix.set(j, i, biasVector.get(j));
+			}
+		}		
+		return biasMatrix;
+    }
+    
+    public static DenseMatrix normalizeBetweenMinusOnetoOne(DenseMatrix mtrix) {	
+    	double minValue = mtrix.minValue();
+    	double maxValue = mtrix.maxValue();
+        for (MatrixEntry e : mtrix) {
+            e.set(e.get() / (maxValue-minValue));
+            e.set(e.get() - (minValue/(maxValue-minValue)));
+            e.set(e.get()*2.0);
+            e.set(e.get()-1.0);
+        }
+		return mtrix;
+    }
+    
+    public static DenseMatrix sigmoidActivatedH(DenseMatrix preActH) {
+        for (MatrixEntry e : preActH) {
+            e.set(FastMath.exp(-1.0*e.get()));
+            e.set(e.get() + 1);
+            e.set(1.0/e.get());            
+        }
+    	return preActH;
+    }
+    
     /**
      * Creates a random vector. Numbers are drawn from a uniform distribution
      * between 0 and 1

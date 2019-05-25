@@ -780,6 +780,26 @@ public abstract class AbstractMatrix implements Matrix {
             max = Math.max(Math.abs(e.get()), max);
         return max;
     }
+    
+    /**
+     * Returns the biggest value
+     */
+    protected double maxValue() {
+        double max = 0;
+        for (MatrixEntry e : this)
+            max = Math.max(e.get(), max);
+        return max;
+    }
+    
+    /**
+     * Returns the smallest value
+     */
+    protected double minValue() {
+        double min = 0;
+        for (MatrixEntry e : this)
+            min = Math.min(e.get(), min);
+        return min;
+    }
 
     /**
      * Returns the largest element of the passed array
