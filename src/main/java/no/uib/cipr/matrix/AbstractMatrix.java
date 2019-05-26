@@ -598,7 +598,7 @@ public abstract class AbstractMatrix implements Matrix {
     }
 
     /**
-     * Checks that a transposed rank2 update is leagal with the given arguments
+     * Checks that a transposed rank2 update is legal with the given arguments
      */
     protected void checkTransRank2(Matrix B, Matrix C) {
         if (!isSquare())
