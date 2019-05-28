@@ -21,6 +21,7 @@
 package no.uib.cipr.matrix;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import no.uib.cipr.matrix.io.MatrixInfo;
 import no.uib.cipr.matrix.io.MatrixSize;
@@ -87,9 +88,14 @@ import org.netlib.util.intW;
  * </table>
  * </p>
  */
-public class DenseMatrix extends AbstractDenseMatrix {
+public class DenseMatrix extends AbstractDenseMatrix implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3102807122943120976L;
+
+	/**
      * Constructor for DenseMatrix
      * 
      * @param r
