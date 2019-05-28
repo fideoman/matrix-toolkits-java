@@ -20,6 +20,7 @@
 
 package no.uib.cipr.matrix;
 
+import java.io.Serializable;
 import java.util.Formatter;
 import java.util.Iterator;
 
@@ -58,9 +59,14 @@ import java.util.Iterator;
  * the <code>get</code> function. A tailored replacement should be used by
  * subclasses. </ul>
  */
-public abstract class AbstractMatrix implements Matrix {
+public abstract class AbstractMatrix implements Matrix, Serializable {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4841466602356182794L;
+
+	/**
      * Number of rows
      */
     protected int numRows;

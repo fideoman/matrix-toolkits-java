@@ -20,15 +20,20 @@
 
 package no.uib.cipr.matrix;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
 /**
  * Partial implementation of a dense matrix
  */
-abstract class AbstractDenseMatrix extends AbstractMatrix {
+abstract class AbstractDenseMatrix extends AbstractMatrix implements Serializable {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6697627583015801748L;
+	/**
      * Matrix contents
      */
     double[] data;
