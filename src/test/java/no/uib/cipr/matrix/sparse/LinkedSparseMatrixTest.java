@@ -68,25 +68,20 @@ public class LinkedSparseMatrixTest extends SparseMatrixTestAbstract {
         int[][] nz = Utilities.getRowPattern(dense.numRows(),
                 dense.numColumns(), 100);
         Utilities.rowPopulate(dense, nz);
-        log.info("created matrices");
         Matrix sparse = new LinkedSparseMatrix(dense.numRows(),
                 dense.numColumns());
         sparse.set(dense);
 
         for (Matrix m : Lists.newArrayList(dense, sparse)) {
-            log.info("starting " + m.getClass());
             Matrix t = new DenseMatrix(m);
             t.transpose();
             Matrix o = new DenseMatrix(dense.numRows(), dense.numColumns());
-            log.info("warming up " + m.getClass() + " " + o.getClass());
             for (int i = 0; i < 10; i++)
                 m.mult(t, o);
-            log.info("starting " + m.getClass() + " " + o.getClass());
             watch.start();
             for (int i = 0; i < 100; i++)
                 m.mult(t, o);
             watch.stop();
-            log.info(m.getClass() + " " + o.getClass() + " " + watch);
         }
     }
 
@@ -96,24 +91,19 @@ public class LinkedSparseMatrixTest extends SparseMatrixTestAbstract {
         int[][] nz = Utilities.getRowPattern(dense.numRows(),
                 dense.numColumns(), 100);
         Utilities.rowPopulate(dense, nz);
-        log.info("created matrices");
         Matrix sparse = new LinkedSparseMatrix(dense.numRows(),
                 dense.numColumns());
         sparse.set(dense);
 
         for (Matrix m : Lists.newArrayList(dense, sparse)) {
-            log.info("starting " + m.getClass());
             Matrix t = new DenseMatrix(m);
             Matrix o = new DenseMatrix(dense.numRows(), dense.numColumns());
-            log.info("warming up " + m.getClass() + " " + o.getClass());
             for (int i = 0; i < 10; i++)
                 m.transAmult(t, o);
-            log.info("starting " + m.getClass() + " " + o.getClass());
             watch.start();
             for (int i = 0; i < 100; i++)
                 m.transAmult(t, o);
             watch.stop();
-            log.info(m.getClass() + " " + o.getClass() + " " + watch);
         }
     }
 
@@ -144,7 +134,6 @@ public class LinkedSparseMatrixTest extends SparseMatrixTestAbstract {
      */
     public static void main(String[] args) throws Exception {
         File file = new File("LinkedSparseMatrixPerf.csv");
-        log.info("writing to " + file);
         @Cleanup
         CSVWriter csv = new CSVWriter(new FileWriter(file));
 
@@ -204,15 +193,11 @@ public class LinkedSparseMatrixTest extends SparseMatrixTestAbstract {
                             Long.toString(sparseMem),
                             Long.toString(sparseInitTime),
                             Long.toString(sparseMultTime)};
-                    log.info(java.util.Arrays.toString(line));
                     csv.writeNext(line);
-
-                    // these are to keep lots of refs above alive from GC
-                    log.finest(origA.numRows() + " " + origB.numColumns() + " "
-                            + patternA.length + " " + patternB.length);
                 }
             }
         }
+        csv.close();
     }
 
 }

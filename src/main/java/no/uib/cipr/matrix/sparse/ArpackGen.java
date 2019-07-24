@@ -186,7 +186,6 @@ public class ArpackGen {
                     // did not converge: Try lowering the accuracy:
                     tol.val = tol.val * 10;
                     convergedTolerance = tol.val;
-                    log.info("New reduced tolerance: "+tol.val);
                     return solve(eigenvalues, ritz, tol.val, ncvModification);
                 }
             }
@@ -196,22 +195,14 @@ public class ArpackGen {
             av(workd, ipntr[0] - 1, ipntr[1] - 1);
         }
 
-        log.fine(i + " iterations for " + n);
-
         if (info.val != 0 && info.val != 1) {
             if (info.val == 3) {
                 //  3: No shifts could be applied during a cycle of the
                 //     Implicitly restarted Arnoldi iteration. One possibility
                 //     is to increase the size of NCV relative to NEV.
-                log.info("'No shifts could be applied during a cycle!'\n" +
-                        "Adding one to the ncv count: "+(ncvModification+1));
                 return solve(eigenvalues, ritz, tolerance, ncvModification+1);
             }
             throw new IllegalStateException("info = " + info.val);
-        }
-        if (info.val == 1){
-            // not converged in max num of iterations!
-            log.info("Maximum number ("+iparam[2]+") taken. "+iparam[5]+" converged Ritz values.");
         }
         double[] dr = new double[nev.val+1];
         double[] di = java.util.Arrays.copyOf(dr,dr.length);
@@ -229,12 +220,10 @@ public class ArpackGen {
                 resid, ncv, v, n, iparam, ipntr, workd, workl, workl.length,
                 info);
         if (info.val != 0) {
-            log.warning("info = " + info.val+" iparam = " + Arrays.toString(iparam));
             throw new IllegalStateException("info = " + info.val);
         }
 
         int computed = iparam[4];
-        ArpackGen.log.fine("computed " + computed + " eigenvalues");
 
         Map<Double, DenseVectorSub> solution = new TreeMap<Double, DenseVectorSub>(
                 new Comparator<Double>() {

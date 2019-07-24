@@ -120,8 +120,6 @@ public class ArpackSym {
             av(workd, ipntr[0] - 1, ipntr[1] - 1);
         }
 
-        ArpackSym.log.fine(i + " iterations for " + n);
-
         if (info.val != 0)
             throw new IllegalStateException("info = " + info.val);
 
@@ -136,7 +134,6 @@ public class ArpackSym {
             throw new IllegalStateException("info = " + info.val);
 
         int computed = iparam[4];
-        ArpackSym.log.fine("computed " + computed + " eigenvalues");
 
         Map<Double, DenseVectorSub> solution = new TreeMap<Double, DenseVectorSub>(
                 new Comparator<Double>() {

@@ -80,7 +80,7 @@ public class ArpackSymTest {
         Map<Double, DenseVectorSub> results = solver.solve(A.numRows() / 10,
                 ArpackSym.Ritz.LA);
         for (Map.Entry<Double, DenseVectorSub> result : results.entrySet()) {
-            log.info(result.getKey().toString());
+            System.out.println(result.getKey().toString());
         }
     }
 

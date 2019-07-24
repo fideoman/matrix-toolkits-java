@@ -42,6 +42,13 @@ public class LinkedSparseMatrix extends AbstractMatrix {
         final int row, col;
         double val;
         Node rowTail, colTail;
+        public Node(int i, int j, double k, Object object, Object object2) {
+        	row = i;
+        	col = j;
+            val = k;
+            rowTail = (Node) object;
+            colTail = (Node) object2;
+		}		
     }
 
     // there is a lot of duplicated code in this class between
