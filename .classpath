@@ -22,7 +22,7 @@
 	<classpathentry kind="lib" path="lib/commons-rng-core-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-rng-simple-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-statistics.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-12">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
